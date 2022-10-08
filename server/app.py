@@ -26,7 +26,7 @@ def fruits():
     month = request.args.get('month')
 
     conn = sqlite3.connect('FreshFruit.db')
-    fruits = conn.execute('SELECT name, image FROM fruits JOIN fruit_month ON fruits.id = fruit_month.fruit_id WHERE fruit_month.month_id = ?', (month,)).fetchall()
+    fruits = conn.execute('SELECT * FROM fruits JOIN fruit_month ON fruits.id = fruit_month.fruit_id WHERE fruit_month.month_id = ?', (month,)).fetchall()
     conn.close()
 
     #TODO improve naming of properties in json

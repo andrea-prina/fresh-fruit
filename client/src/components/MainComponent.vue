@@ -2,14 +2,14 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col-2" v-for="month in months" :key="month.id">
+                <div class="col-2" v-for="month in months" :key="month[0]">
                     <button @click="getFreshFruits(month[0])">{{ month[2] }}</button>
                 </div>
             </div>
         </div>
         <ul>
-            <li v-for="fruit in freshFruits" :key="fruit.id">
-                {{ fruit[0] }}
+            <li v-for="fruit in freshFruits" :key="fruit[0]">
+                {{ fruit[1] }}
             </li>
         </ul>
     </main>
