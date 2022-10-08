@@ -1,9 +1,14 @@
 <template>
     <main>
-        <input type="text" name="" id="" v-model="month" placeholder="">
-        <button @click="getFreshFruits">PRESS ME</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-2" v-for="month in months" :key="month.id">
+                    <button @click="getFreshFruits(month[0])">{{ month[2] }}</button>
+                </div>
+            </div>
+        </div>
         <ul>
-            <li v-for="fruit in freshFruit" :key="fruit.id">
+            <li v-for="fruit in freshFruits" :key="fruit.id">
                 {{ fruit[0] }}
             </li>
         </ul>
@@ -20,24 +25,38 @@ export default {
     data : function(){
         return {
 
-            month : "",
-            freshFruit : [],
+            months : [],
+            freshFruits : [],
+            selectedMonth : "",
         }
     },
 
     methods : {
 
-        getFreshFruits : function(){
-            axios.get(`http://127.0.0.1:5000/fruit?month=${this.month}`)
+        getMonths : function(){
+            axios.get(`http://127.0.0.1:5000/months`)
             .then((result) => {
-                this.freshFruit = result.data.data.fruits
-                console.log(this.freshFruit);
+                this.months = result.data.data.months;
             })
             .catch((err) => {
                 console.warn(err);
             })
         },
 
+        getFreshFruits : function(selMonth){
+            axios.get(`http://127.0.0.1:5000/fruits?month=${selMonth}`)
+            .then((result) => {
+                this.freshFruits = result.data.data.fruits;
+            })
+            .catch((err) => {
+                console.warn(err);
+            })
+        },
+
+    },
+
+    created(){
+        this.getMonths();
     }
 
 }
