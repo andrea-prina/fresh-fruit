@@ -1,23 +1,19 @@
-from markupsafe import escape
-from flask import Flask, jsonify
-from flask_cors import CORS
-
-
-# configuration
-DEBUG = True
+from flask import Flask, jsonify, request
+import sqlite3
 
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-# enable CORS
-CORS(app, resources={r'/*': {'origins': '*'}})
+@app.route('/fruit', methods=['GET'])
+def index():
 
+    month = request.args.get('month')
 
-# sanity check route
-@app.route('/ping', methods=['GET'])
-def ping_pong():
-    return jsonify('pong!')
+    conn = sqlite3.connect('FreshFruit.db')
+    fruits = conn.execute('SELECT name, image FROM fruits JOIN fruit_month ON fruits.id = fruit_month.fruit_id WHERE fruit_month.month_id = ?', (month,)).fetchall()
+    conn.close()
+    return jsonify({'status': 'success', 'data' : {'fruits' : fruits}})
 
 
 if __name__ == '__main__':
