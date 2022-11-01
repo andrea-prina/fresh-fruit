@@ -1,6 +1,6 @@
 <template>
-    <button @click="$emit('getFruits', month[0])" class="w-100 btn btn-outline-secondary" :class="month[0] == activeMonth ? 'active' : ''">
-        {{ month[2] }}
+    <button @click="$emit('getFruits', month.id)" class="w-100 btn btn-outline-secondary" :class="month.id == activeMonth ? 'active' : ''">
+        {{ month.abbreviation }}
     </button>
 </template>
 
@@ -10,7 +10,7 @@ export default {
     name : 'MonthButton',
 
     props : {
-        month : Array,
+        month : Object,
         activeMonth : Number,
     }
 

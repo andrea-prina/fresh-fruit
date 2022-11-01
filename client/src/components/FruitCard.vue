@@ -1,7 +1,7 @@
 <template>
     <div class="text-center w-100">
-        <img class="w-100 mb-2" :src="fruit[2]" :alt="fruit[1]">
-        <div>{{  fruit[1]  }}</div>
+        <img class="w-100 mb-2" :src="fruit.image" :alt="fruit.name">
+        <div>{{  fruit.name }}</div>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     name : 'FruitCard',
 
     props : {
-        fruit : Array,
+        fruit : Object,
     } 
 
 }

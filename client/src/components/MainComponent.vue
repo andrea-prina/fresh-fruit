@@ -3,13 +3,13 @@
         <div class="container">
             <img src="../assets/fresh_fruit_logo.png" alt="" class="logo">
             <div class="row g-3 my-4">
-                <div class="col-4 col-md-2 col-lg-1" v-for="month in months" :key="month[0]">
+                <div class="col-4 col-md-2 col-lg-1" v-for="month in months" :key="month.id">
                     <MonthButton :month="month" :activeMonth="activeMonth" @getFruits="getFreshFruits"/>
                 </div>
             </div>
             <div v-if="activeMonth == null" class="text-center fw-bold">Select a month to see what seasonal fruits are fresh</div>
             <div class="row g-5">
-                <div class="col-4 col-md-2 col-lg-2" v-for="fruit in freshFruits" :key="fruit[0]">
+                <div class="col-4 col-md-2 col-lg-2" v-for="fruit in freshFruits" :key="fruit.id">
                     <FruitCard :fruit="fruit"/>
                 </div>
             </div>
