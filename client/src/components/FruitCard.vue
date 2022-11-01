@@ -11,7 +11,7 @@ export default {
     name : 'FruitCard',
 
     props : {
-        fruit : Object,
+        fruit : Array,
     } 
 
 }
