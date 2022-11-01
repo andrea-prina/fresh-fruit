@@ -1,5 +1,5 @@
 <template>
-    <button @click="$emit('getFruits', month[0])" class="w-100" :class="month[0] == activeMonth ? 'active' : ''">
+    <button @click="$emit('getFruits', month[0])" class="w-100 btn btn-outline-secondary" :class="month[0] == activeMonth ? 'active' : ''">
         {{ month[2] }}
     </button>
 </template>
@@ -20,6 +20,11 @@ export default {
 <style lang="scss" scoped>
 
     button.active {
+        background-color: #EE4033;
+        color: #FFF;
+    }
+
+    button:hover {
         background-color: #EE4033;
     }
 
