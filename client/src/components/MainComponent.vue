@@ -4,7 +4,7 @@
             <h1>FreshFruit</h1>
             <div class="row g-2 my-4">
                 <div class="col-4 col-md-2 col-lg-1" v-for="month in months" :key="month[0]">
-                    <button class="month-btn" @click="getFreshFruits(month[0])">{{ month[2] }}</button>
+                    <MonthButton :month="month" @getFruits="getFreshFruits"/>
                 </div>
             </div>
             <div class="row g-2 mb-2">
@@ -19,6 +19,7 @@
 <script>
 import axios from 'axios'
 import FruitCard from './FruitCard.vue'
+import MonthButton from './MonthButton.vue'
 
 export default {
     
@@ -26,6 +27,7 @@ export default {
 
     components : {
         FruitCard,
+        MonthButton
     },
 
     data : function(){
@@ -70,9 +72,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-    .month-btn {
-        width: 100%;
-    }
 
 </style>
