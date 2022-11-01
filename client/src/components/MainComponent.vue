@@ -59,8 +59,6 @@ export default {
             })
         },
 
-        addButtonActiveStyle
-
     },
 
     created(){
